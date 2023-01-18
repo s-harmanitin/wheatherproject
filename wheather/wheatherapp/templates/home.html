@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+ 
+    
+<style>
+  body{
+    background-image: url("{{data.icon}}.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .add {
+      width: 59% !important;
+      margin: 7rem auto !important;
+      display: grid;
+      background-size: cover;
+      justify-items: center;
+      box-shadow: 0px 0px 34px -4px #000;
+      text-align: center;
+      border-radius: 15px;
+      background-color: white;
+      backdrop-filter: blur(10px);
+      opacity: 0.9;
+      backdrop-filter: blur(10px);
+  }
+  .weather_card {
+      background: #00000042;
+      display: flex;
+      border-radius: 10px;
+      width: 100% !important;
+      color: black;
+      height: 130px;
+      margin-bottom: 3rem;
+      padding: 15px;
+      box-shadow: -5px 5px 15px 5px rgb(150 150 150 / 20%);
+      margin-top: 3rem;
+  }
+  .weather_card_infos_temp {
+      font-size: 22px;
+      font-weight: 500;
+      color: #f5f5f5 !important;
+  }
+  h1.point {
+      color: #1e1e1e !important;
+  }
+  button.btn.btn-outline-primary {
+      color: #394a76;
+      border-color: #394a76;
+      text-transform: uppercase;
+  }
+  button.btn.btn-outline-primary:hover {
+      background: #394a76;
+      color: #ffff;
+  }#app{
+    background-image: url("{% static 'autmn.jpg' %}");
+  }
+  body{
+    background-image: url("{% static 'mo.jpg' %}");
+  }
+  
+  </style>
+
+
+
+
+
+<div  class="content_wrapper add" id="app">
+  <div v-if="infos.city ">
+    <h1 class="point">
+      <i class="far fa-snowflake w3-spin"></i>Live Weather <i class="far fa-snowflake w3-spin"></i>
+      <div class="date"></div>
+
+    </h1>
+    
+      <form  method='POST'>
+      {% csrf_token %}  
+            <input class='form-control' name='city' placeholder="Enter City Name"><br>
+            <button type='submit' class="btn btn-outline-primary">submit</button>
+
+
+       </form>
+    <div class='text-align-center'>
+    {% for i in messages %}
+          {{i}}
+          {% endfor %}
+    </div>      
+    <br>
+    <div class="weather_card" >
+      <div class="weather_card_img">
+        <div class="weather_card_state">
+          <span class="material-icons">
+        <img src='http://openweathermap.org/img/wn/{{data.icon}}.png'>
+          </span>
+        </div>
+      </div>
+
+      <div class="weather_card_infos">
+        <div class="weather_card_infos_title">
+                <i class="fas fa-home"></i> {{data.name}} ,{{data.country}} ,{{data.desc}} <br>
+                 <i class="far fa-clock"></i> {{data.t}}
+        </div>
+        <div style="color:green"; class="weather_card_infos_temp">
+          <i class="fas fa-temperature-low"></i> {{data.cel_temperature}}°C | {{data.kel_temperature}}°F  <i class="fas fa-wind"> </i> {{data.wind}} km/h
+        </div>
+        <div class="bottom">
+          <div class="weather_card_infos_bottom">
+                Humidity : {{data.humidity}}  Pressure : {{data.pressure}}
+          </div>
+
+
+           
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+
+
+
+
+    
+  </body>
+</html>
+
+
+
+
+  
+ 
+  {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
